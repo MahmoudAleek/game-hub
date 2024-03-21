@@ -1,5 +1,4 @@
-import { Genre } from "../hooks/useGenre";
-import useData from "../hooks/useData";
+import useGenres, { Genre } from "../hooks/useGenres";
 import {
   HStack,
   List,
@@ -17,7 +16,7 @@ interface Props {
 }
 
 const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
-  const { data, isLoading, error } = useData<Genre>("/genres");
+  const { data, isLoading, error } = useGenres();
 
   if (error) return null;
   if (isLoading) return <Spinner />;
@@ -27,7 +26,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
         Genres
       </Heading>
       <List>
-        {data.map((genre) => (
+        {data?.results.map((genre) => (
           <ListItem key={genre.id} paddingY={2}>
             <HStack>
               <Image
