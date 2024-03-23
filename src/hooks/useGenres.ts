@@ -10,7 +10,7 @@ export interface Genre {
 
 const apiClient = new APIClient<Genre>("genres");
 
-const useGenre = () =>
+const useGenres = () =>
   useQuery({
     queryKey: ["genres"],
     queryFn: apiClient.getAll,
@@ -18,4 +18,4 @@ const useGenre = () =>
     initialData: { count: genres.length, results: genres },
   });
 
-export default useGenre;
+export default useGenres;
